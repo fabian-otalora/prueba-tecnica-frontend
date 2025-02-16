@@ -32,7 +32,7 @@
         </header>
     </div>
     <div class="container py-4">
-        <h3>Listado de bebidas y cócteles con alcohol</h3>
+        <h3>Listado de bebidas y cócteles sin alcohol</h3>
         <a class="btn btn-primary" href="{{ url('/home') }}" role="button">Atras <i class="bi bi-caret-left-fill"></i></a>
         <br/>
         <table id="example" class="table table-striped" style="width:100%">
@@ -56,7 +56,7 @@
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
-        fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
+        fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
             .then(res=>res.json())
             .then(data=>{
                 console.log('data',data);
@@ -88,7 +88,7 @@
 
             var payload = {
                 name: drink,
-                category: "Alcohol"
+                category: "Sin Alcohol"
             };
 
             const options = {

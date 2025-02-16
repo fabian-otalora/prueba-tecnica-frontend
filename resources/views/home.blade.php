@@ -43,8 +43,9 @@
         <p class="lead">Bienvenido! En este espacio puedes consultar y registrar tus cocteles favoritos. <i class="bi bi-emoji-sunglasses"></i></p>
         <hr class="my-4">
         <p class="lead">
-          <a class="btn btn-primary btn" href="{{ url('/list-api') }}" role="button">Lista de cócteles con Alcohol - (API)</a>
-          <a class="btn btn-primary btn" href="#" role="button">Lista de cócteles en base de datos</a>
+          <a class="btn btn-primary btn" href="{{ url('/list-api') }}" role="button">Lista de cócteles con Alcohol - (API) <i class="bi bi-cup-straw"></i></a>
+          <a class="btn btn-primary btn" href="{{ url('/list-api-two') }}" role="button">Lista de cócteles sin Alcohol - (API) <i class="bi bi-ban"></i></a>
+          <a class="btn btn-primary btn" href="{{ url('/list-db') }}" role="button">Lista de cócteles en base de datos <i class="bi bi-database"></i></a>
         </p>
 
       </div>

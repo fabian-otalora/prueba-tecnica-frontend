@@ -32,15 +32,15 @@
         </header>
     </div>
     <div class="container py-4">
-        <h3>Listado de bebidas y cócteles con alcohol</h3>
+        <h3>Listado de bebidas y cócteles en base de datos</h3>
         <a class="btn btn-primary" href="{{ url('/home') }}" role="button">Atras <i class="bi bi-caret-left-fill"></i></a>
         <br/>
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>Imagen</th>
                     <th>Id</th>
                     <th>Nombre</th>
+                    <th>Categoria</th>
                     <th></th>
                 </tr>
             </thead>
@@ -56,24 +56,24 @@
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
-        fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
+
+        fetch('/public/listDB')
             .then(res=>res.json())
             .then(data=>{
                 console.log('data',data);
 
-                displayProducts(data.drinks);
+                displayProducts(data);
             })
 
         async function displayProducts(products) {
             let html = '';
             await products.forEach((product, index, array) => {
                 html += '<tr>';
-                html += `<td>
-                            <img src="${product.strDrinkThumb}" style="width:50px;height:50px;border-radius:10%" alt="">
-                         </td>
-                        <td>${product.idDrink}</td>
-                        <td>${product.strDrink}</td>
-                        <td><button type="button" class="btn btn-secondary" onclick="saveDB('${product.strDrink}')">Agregar en base de datos</button>`;
+                html += `
+                        <td>${product.id}</td>
+                        <td>${product.name}</td>
+                        <td>${product.category}</td>
+                        <td><button type="button" class="btn btn-danger" onclick="deleteDB('${product.id}')">Eliminar</button>`;
                 html += '</tr>';
             })
             document.querySelector('tbody').innerHTML = await html;
@@ -83,12 +83,11 @@
             });
         }
 
-        function saveDB(drink) {
+        function deleteDB(drink) {
             console.log(drink);
 
             var payload = {
-                name: drink,
-                category: "Alcohol"
+                id: drink
             };
 
             const options = {
@@ -100,9 +99,12 @@
                 body: JSON.stringify(payload),
             };
 
-            fetch("/public/saveDrink", options)
+            fetch("/public/delete", options)
             .then(function(res){ return res.json() })
-            .then(function(data){ alert( JSON.stringify( data.message ) ) })
+            .then(function(data){ 
+                alert( JSON.stringify( data.message ) ) 
+                location.reload();
+            })
             
         }
         

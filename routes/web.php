@@ -17,3 +17,9 @@ Route::get('home', [AuthController::class, 'home']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('list-api', [CoctelesController::class, 'viewListAPI']);
+Route::get('list-api-two', [CoctelesController::class, 'viewTwoListAPI']);
+Route::get('list-db', [CoctelesController::class, 'viewListDB']);
+Route::get('listDB', [CoctelesController::class, 'listDB']);
+
+Route::post('saveDrink', [CoctelesController:: class, 'saveDrink']);
+Route::post('delete', [CoctelesController:: class, 'delete']);
